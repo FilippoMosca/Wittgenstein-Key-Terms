@@ -9,17 +9,26 @@
             margin: 0; /* Rimuove il margine predefinito del body */
             padding: 20px; /* Aggiunge padding al body */
         }
+        ul {
+            list-style-type: disc; /* Punti elenco standard per i Key Terms */
+        }
+        ul.instructions {
+            list-style-type: none; /* Rimuove i punti elenco predefiniti */
+            padding-left: 0; /* Rimuove il padding a sinistra */
+        }
+        ul.instructions li::before {
+            content: "▸"; /* Aggiunge un simbolo speciale prima degli elementi */
+            color: blue; /* Colore dei simboli */
+            padding-right: 10px; /* Aggiunge spazio tra il simbolo e il testo */
+        }
         ul li {
-            margin-bottom: 10px; /* Aggiunge uno spazio di 10px sotto ogni 
-elemento della lista */
+            margin-bottom: 10px; /* Aggiunge uno spazio di 10px sotto ogni elemento della lista */
         }
         .header {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Allinea gli elementi del header a 
-sinistra */
-            margin-bottom: 35px; /* Aumenta lo spazio tra il titolo e gli 
-hyperlink */
+            align-items: flex-start; /* Allinea gli elementi del header a sinistra */
+            margin-bottom: 35px; /* Aumenta lo spazio tra il titolo e gli hyperlink */
         }
         .header img {
             width: 150px; /* Imposta la larghezza dell'immagine */
@@ -31,8 +40,19 @@ hyperlink */
         h2 {
             margin: 0; /* Rimuove il margine del sottotitolo */
             font-size: 1.2em; /* Dimensione del sottotitolo */
-            padding-top: 10px; /* Aggiunge uno spazio tra il titolo 
-principale e il sottotitolo */
+            padding-top: 10px; /* Aggiunge uno spazio tra il titolo principale e il sottotitolo */
+        }
+        .interactive {
+            cursor: pointer;
+            color: blue; /* Stesso colore dei key terms */
+            text-decoration: underline;
+            font-size: 0.9em; /* Dimensione del font più piccola */
+            font-family: Arial, sans-serif; /* Stesso font dei key terms */
+        }
+        .description {
+            display: none;
+            margin-left: 20px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -53,5 +73,45 @@ principale e il sottotitolo */
         <li><a href="bedeutung/index.html">Bedeutung</a></li>
         <li><a href="sinn/index.html">Sinn</a></li>
     </ul>
+    
+    <!-- Nuova sezione Instructions -->
+    <h2 style="margin-top: 30px;">Instructions</h2>
+    <ul class="instructions">
+        <li class="interactive" onclick="toggleDescription('corpus')">Corpus</li>
+        <div id="corpus" class="description">The corpus consists of the remarks that make up the Tractatus and the earlier German manuscripts: Ms-101, Ms-102, Ms-103, Ms-104, Ts-202.</div>
+
+        <li class="interactive" onclick="toggleDescription('key-terms')">Key-Terms</li>
+        <div id="key-terms" class="description">Each term in the list above is a key term of the early Wittgenstein's context principle.</div>
+
+        <li class="interactive" onclick="toggleDescription('co-occurrence')">Co-occurrence windows (~1, ~2, ~3, ~4, ~5)</li>
+        <div id="co-occurrence" class="description">
+            Each hyperlink associated with key terms (e.g. <a href="https://filippomosca.github.io/Wittgenstein-Key-Terms/zusammenhang/index.html">Zusammenhang</a>) points to a page where the user can choose from 5 different co-occurrence windows. <br>
+            "~1" means that the window corresponds to a context of 1 word to the left and 1 word to the right of the target term. <br>
+            "~2" means that the window corresponds to a context of 2 words to the left and 2 words to the right of the target term. <br>
+            "~3" means that the window corresponds to a context of 3 words to the left and 3 words to the right of the target term. <br>
+            "~4" means that the window corresponds to a context of 4 words to the left and 4 words to the right of the target term. <br>
+            "~5" means that the window corresponds to a context of 5 words to the left and 5 words to the right of the target term.
+        </div>
+
+        <li class="interactive" onclick="toggleDescription('collocations')">Collocations</li>
+        <div id="collocations" class="description">Any hyperlink associated with a co-occurrence window of a key term (e.g. <a href="https://filippomosca.github.io/Wittgenstein-Key-Terms/zusammenhang/zusammenhang1/index.html">Zusammenhang ~1</a>) points to a page listing all collocations of that term for that co-occurrence window.</div>
+
+        <li class="interactive" onclick="toggleDescription('remarks')">Remarks</li>
+        <div id="remarks" class="description">Each hyperlink associated with a collocation points to a page listing all the remarks in which that collocation and the target term co-occur (according to the selected co-occurrence window). By clicking on one of the remark abbreviation, the user accesses the content of the remark in question (normalised version) in the Wittgenstein Source.</div>
+
+        <li class="interactive" onclick="toggleDescription('wittgenstein-source')">Wittgenstein Source</li>
+        <div id="wittgenstein-source" class="description"><a href="http://www.wittgensteinsource.org/">Wittgenstein Source</a> is a website that is developed and run by the <a href="https://wab.uib.no/wittgensteinonline.page">Wittgenstein Archives at the University of Bergen</a>, which provides free access to Wittgenstein primary sources.</div>
+    </ul>
+
+    <script>
+        function toggleDescription(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
