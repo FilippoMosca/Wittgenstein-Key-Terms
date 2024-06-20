@@ -54,6 +54,15 @@
             margin-left: 20px;
             margin-bottom: 20px;
         }
+        .stopwords {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        .stopwords-list {
+            display: none;
+            color: red; /* Colore rosso per le parole e le parentesi */
+        }
     </style>
 </head>
 <body>
@@ -78,7 +87,7 @@
     <h2 style="margin-top: 30px;">Instructions</h2>
     <ul class="instructions">
         <li class="interactive" onclick="toggleDescription('corpus')">Corpus</li>
-        <div id="corpus" class="description">The corpus consists of the remarks that make up the Tractatus and the earlier German manuscripts: Ms-101, Ms-102, Ms-103, Ms-104, Ts-202.</div>
+        <div id="corpus" class="description">The corpus consists of the remarks that make up the Tractatus and the earlier German manuscripts: Ms-101, Ms-102, Ms-103, Ms-104, Ts-202. <span class="stopwords" onclick="toggleStopwords()">Stopwords</span> <span class="stopwords-list">{a; aber; alle; allem; allen; aller; alles; als; also; am; an; ander; andere; anderem; anderen; anderer; anderes; anderm; andern; anderr; anders; auch; auf; aus; b; bei; bin; bis; bist; bzw; d; d.h.; da; damit; dann; das; dass; dasselbe; dazu; daß; dein; deine; deinem; deinen; deiner; deines; dem; demselben; den; denn; denselben; der; derer; derselbe; derselben; des; desselben; dessen; dh; dich; die; dies; diese; dieselbe; dieselben; diesem; diesen; dieser; dieses; dir; doch; dort; du; durch; e; ein; eine; einem; einen; einer; eines; einig; einige; einigem; einigen; einiger; einiges; einmal; er; es; etc; etwas; euch; euer; eure; eurem; euren; eurer; eures; f; für; g; gegen; gewesen; h; hab; habe; haben; hat; hatte; hatten; hier; hin; hinter; i; ich; ihm; ihn; ihnen; ihr; ihre; ihrem; ihren; ihrer; ihres; im; in; indem; ins; ist; j; jede; jedem; jeden; jeder; jedes; jene; jenem; jenen; jener; jenes; jetzt; k; kann; kein; keine; keinem; keinen; keiner; keines; können; könnte; m; machen; man; manche; manchem; manchen; mancher; manches; mein; meine; meinem; meinen; meiner; meines; mich; mir; mit; muss; musste; n; nach; nicht; nichts; noch; nun; nur; o; ob; oder; ohne; p; pq; q; r; s; sehr; sein; seine; seinem; seinen; seiner; seines; selbst; sich; sie; sind; so; solche; solchem; solchen; solcher; solches; soll; sollte; sondern; sonst; u; über; um; und; uns; unser; unsere; unserem; unseren; unseres; unter; v; viel; vom; von; vor; w; war; waren; warst; was; weg; weil; weiter; welche; welchem; welchen; welcher; welches; wenn; werde; werden; wie; wieder; will; wir; wird; wirst; wo; wollen; wollte; während; würde; würden; z; zu; zum; zur; zwar; zwischen; z.B.; zb}</span> have been removed.</div>
 
         <li class="interactive" onclick="toggleDescription('key-terms')">Key Terms</li>
         <div id="key-terms" class="description">Each term in the list above is a key term of the early Wittgenstein's context principle.</div>
@@ -100,7 +109,7 @@
         <div id="remarks" class="description">Each hyperlink associated with a collocation points to a page listing all the remarks in which that collocation and the target term co-occur (according to the selected co-occurrence window). By clicking on one of the remark abbreviation, the user accesses the content of the remark in question (normalised version) in the Wittgenstein Source.</div>
 
         <li class="interactive" onclick="toggleDescription('wittgenstein-source')">Wittgenstein Source</li>
-        <div id="wittgenstein-source" class="description"><a href="http://www.wittgensteinsource.org/">Wittgenstein Source</a> is a website that is developed and run by the <a href="https://wab.uib.no/wittgensteinonline.page">Wittgenstein Archives at the University of Bergen</a>, which provides free access to Wittgenstein primary sources.</div>
+        <div id="wittgenstein-source" class="description"><a href="http://www.wittgensteinsource.org/">Wittgenstein Source</a> is a website that is developed and run by the <a href="https://wab.uib.no/wittgensteinonline.page">Wittgenstein Archives at the University of Bergen</a>. It provides free access to Wittgenstein primary sources.</div>
     </ul>
 
     <script>
@@ -108,6 +117,15 @@
             var element = document.getElementById(id);
             if (element.style.display === "none") {
                 element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        function toggleStopwords() {
+            var element = document.querySelector('.stopwords-list');
+            if (element.style.display === "none") {
+                element.style.display = "inline";
             } else {
                 element.style.display = "none";
             }
